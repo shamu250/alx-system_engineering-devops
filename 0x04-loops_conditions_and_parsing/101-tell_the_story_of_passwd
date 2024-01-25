@@ -1,16 +1,8 @@
 #!/usr/bin/env bash
-# this file prints out the (parsed) contents of the /etc/passwd file
-while read line; do
-	USERNAME=$(echo "$line" | cut -d: -f1)
-	GROUP_ID=$(echo "$line" | cut -d: -f4)
-	HOME_DIR=$(echo "$line" | cut -d: -f6)
-	CMD_SHL=$(echo "$line" | cut -d: -f7)
-	USER_ID=$(echo "$line" | cut -d: -f3)
-	PASSWD=$(echo "$line" | cut -d: -f2)
-	USER_ID_INFO=$(echo "$line" | cut -d: -f5)
-	printf "The user %s is part of the %s gang, " "$USERNAME" "$GROUP_ID"
-	printf "lives in %s " "$HOME_DIR"
-	printf "and rides %s. %d's place is protected by " "$CMD_SHL" "$USER_ID"
-	printf "the passcode %s, more info about the user" "$PASSWD"
-	printf " here: %s\n" "$USER_ID_INFO"
+# This script parses /etc/passwd file to tell a story..
+while IFS=: read -r f1 f2 f3 f4 f5 f6 f7
+do
+    echo -n "The user $f1 is part of the $f4 gang, lives in $f6 and rides $f7. "
+    echo -n "$f3's place is protected by the passcode $f2, more info about the "
+    echo "user here: $f5"
 done < /etc/passwd
