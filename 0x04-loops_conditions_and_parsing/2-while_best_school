@@ -1,7 +1,11 @@
-#!/usr/bin/env bash
-# this script prints a string 10 times
-i="0"
-while [ $i -lt 10 ]; do
-	echo "Best School"
-	i=$((i+1))
+#!/bin/bash
+
+# Initialize counter
+counter=0
+
+# Use while loop to display "Best School" 10 times
+while [ $counter -lt 10 ]
+do
+  echo "Best School"
+  ((counter++))
 done
