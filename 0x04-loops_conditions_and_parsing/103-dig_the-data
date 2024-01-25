@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-# This script parses an Apache log access file by ip address using awk.
-awk 'BEGIN { FS = " " } ; { print $1, $9 }' apache-access.log | sort -b | uniq -c | sort -b
+# this script extracts the following information from an apache log file:
+# 1) IP address, 2) HTTP status code
+awk '{print $1 " " $9}' apache-access.log | sort | uniq --count | sort --reverse --general-numeric-sort
