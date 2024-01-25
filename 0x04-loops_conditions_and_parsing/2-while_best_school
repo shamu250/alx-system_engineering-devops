@@ -1,11 +1,7 @@
-#!/bin/bash
-
-# Initialize counter
-counter=0
-
-# Use while loop to display "Best School" 10 times
-while [ $counter -lt 10 ]
-do
-  echo "Best School"
-  ((counter++))
+#!/usr/bin/env bash
+# This script is displaying "Holberton School" 10 times
+COUNTER=0
+while [ $COUNTER -lt 10 ]; do
+      echo Best School
+      let COUNTER=COUNTER+1
 done
