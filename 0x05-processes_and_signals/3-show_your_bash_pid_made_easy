@@ -1,4 +1,18 @@
 #!/usr/bin/env bash
 # Write a bash script that displays the PID, along with process
-# name of processes which name contains the word bash.
-./1-list_your_processes | pgrep -l bash
+# Get the current script's PID
+script_pid=$$
+
+# Iterate through all processes
+for pid in /proc/*/; do
+    pid=${pid%/}  # Remove trailing '/'
+    pid=${pid##*/}  # Get the PID from the path
+
+    # Check if the process is a bash process
+    if [ -e "/proc/$pid/cmdline" ] && grep -q "bash" "/proc/$pid/cmdline"; then
+        # Display the bash PID and the script's PID
+        echo "$pid bash"
+        echo "$script_pid $0"
+        break
+    fi
+done
