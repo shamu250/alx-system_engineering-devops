@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Write a bash script that displays
-# 'To infinity and beyond' indefinitely.
-# 'I am invincible!!!' when receiving a SIGTERM signal.
-trap "echo I am invincible!!!" SIGTERM
-
-while true
-do
-    echo "To infinity and beyond"
-    sleep 2
+# this script prints a string and avoids being killed
+function lol {
+	# don't die, print this instead:
+	printf "I am invincible!\n"
+}
+trap lol SIGTERM
+while true; do
+	printf "To infinity and beyond\n"
+	sleep 2s
 done
