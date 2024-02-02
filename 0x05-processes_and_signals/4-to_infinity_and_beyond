@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# this script print "To infinity and beyond" ... forever ...
-while true; do
-	printf "To infinity and beyond\n"
-	sleep 2s
+# Write a bash script that displays
+# 'To infinity and beyond' indefinitely.
+while true
+do
+    echo "To infinity and beyond"
+    sleep 2
 done
