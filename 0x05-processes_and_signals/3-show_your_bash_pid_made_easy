@@ -3,16 +3,12 @@
 # Get the current script's PID
 script_pid=$$
 
-# Iterate through all processes
-for pid in /proc/*/; do
-    pid=${pid%/}  # Remove trailing '/'
-    pid=${pid##*/}  # Get the PID from the path
-
-    # Check if the process is a bash process
-    if [ -e "/proc/$pid/cmdline" ] && grep -q "bash" "/proc/$pid/cmdline"; then
-        # Display the bash PID and the script's PID
-        echo "$pid bash"
-        echo "$script_pid $0"
-        break
+# Run a loop to find all bash processes
+for pid in $(pgrep bash); do
+    # Skip the current script's PID
+    if [ "$pid" -ne "$script_pid" ]; then
+        # Get the process name associated with the PID
+        process_name=$(ps -o comm= -p "$pid")
+        echo "$pid $process_name"
     fi
 done
