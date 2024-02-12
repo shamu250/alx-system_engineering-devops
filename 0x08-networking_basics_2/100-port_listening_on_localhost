@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# Define the port number
-# Listen on localhost on the specified port
-PORT=98
-nc -l -p $PORT
